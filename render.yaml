@@ -2,13 +2,9 @@ services:
   - type: web
     name: n8n
     runtime: docker
-    plan: starter
+    plan: free
     healthCheckPath: /healthz
     autoDeploy: true
-    disk:
-      name: n8n-data
-      mountPath: /data
-      sizeGB: 10
     envVars:
       - key: N8N_HOST
         sync: false
@@ -29,7 +25,7 @@ services:
       - key: N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS
         value: "true"
       - key: N8N_USER_FOLDER
-        value: /data/.n8n
+        value: /home/node/.n8n
       - key: TZ
         value: Europe/Moscow
       - key: GENERIC_TIMEZONE
