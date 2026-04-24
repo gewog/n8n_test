@@ -1,0 +1,42 @@
+services:
+  - type: web
+    name: n8n
+    runtime: docker
+    plan: starter
+    healthCheckPath: /healthz
+    autoDeploy: true
+    disk:
+      name: n8n-data
+      mountPath: /data
+      sizeGB: 10
+    envVars:
+      - key: N8N_HOST
+        sync: false
+      - key: N8N_PROTOCOL
+        value: https
+      - key: WEBHOOK_URL
+        sync: false
+      - key: N8N_PORT
+        value: "5678"
+      - key: N8N_EDITOR_BASE_URL
+        sync: false
+      - key: N8N_ENCRYPTION_KEY
+        generateValue: true
+      - key: N8N_DIAGNOSTICS_ENABLED
+        value: "false"
+      - key: N8N_PERSONALIZATION_ENABLED
+        value: "false"
+      - key: N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS
+        value: "true"
+      - key: N8N_USER_FOLDER
+        value: /data/.n8n
+      - key: TZ
+        value: Europe/Moscow
+      - key: GENERIC_TIMEZONE
+        value: Europe/Moscow
+      - key: N8N_BASIC_AUTH_ACTIVE
+        value: "true"
+      - key: N8N_BASIC_AUTH_USER
+        sync: false
+      - key: N8N_BASIC_AUTH_PASSWORD
+        sync: false
